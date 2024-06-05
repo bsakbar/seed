@@ -1,0 +1,84 @@
+.cls-1 {
+  stroke-width: .93px;
+}
+
+.cls-1, .cls-2, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+  stroke: #000;
+  stroke-miterlimit: 10;
+}
+
+.cls-1, .cls-3, .cls-4, .cls-5, .cls-6, .cls-7, .cls-8, .cls-9 {
+  fill: none;
+}
+
+.cls-2, .cls-10 {
+  fill: #000;
+}
+
+.cls-3 {
+  stroke-width: 1.01px;
+}
+
+.cls-10, .cls-11, .cls-12 {
+  stroke-width: 0px;
+}
+
+.cls-4 {
+  stroke-width: 1.06px;
+}
+
+.cls-6 {
+  stroke-width: .9px;
+}
+
+.cls-7 {
+  stroke-width: 3px;
+}
+
+.cls-11 {
+  fill: #fff;
+}
+
+.cls-8 {
+  stroke-width: .83px;
+}
+
+.cls-9 {
+  stroke-width: .87px;
+}
+
+.cls-12 {
+  fill: #d3ccc6;
+}
+
+#coffee_grinder:hover {
+  fill: white;
+}
+
+
+#cloud_moving_1 {
+  animation: move-right-to-left-and-back 8s linear infinite;
+}
+#cloud_moving_2 {
+  animation: move-right-to-left-and-back 9s linear infinite;
+  animation-delay: 1s; 
+
+}
+#cloud_moving_3 {
+  animation: move-right-to-left-and-back 10s linear infinite;
+  animation-delay: 1.5s; 
+
+}
+
+
+@keyframes move-right-to-left-and-back{
+  0% {
+    transform: translateX(1vw); /* Start from the right */
+}
+50% {
+    transform: translateX(-1vw); /* Move to the left */
+}
+100% {
+    transform: translateX(1vw); /* Move back to the right */
+}
+}
