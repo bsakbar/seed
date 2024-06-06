@@ -2,16 +2,22 @@ import React, { useState, useEffect } from 'react';
 
 function Grinder() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audio, setAudio] = useState(new Audio('/sounds/Grinder.mp3'));
 
   useEffect(() => {
-    const grinderAudio = new Audio('/sounds/Grinder.mp3');
-
     const handleClick = () => {
-      grinderAudio.play();
-      
+      if (isPlaying) {
+        audio.pause();
+        audio.currentTime = 0; 
+        setIsPlaying(false);
+      } else {
+        audio.play();
+        setIsPlaying(true);
+      }
     };
 
-    const svgElement = document.querySelector('#coffee_grinder');
+    const svgElement = document.querySelector('#grinder_hover');
     if (svgElement) {
       svgElement.addEventListener('click', handleClick);
     }
@@ -21,7 +27,7 @@ function Grinder() {
         svgElement.removeEventListener('click', handleClick);
       }
     };
-  }, []);
+  }, [audio, isPlaying]);
 
   const handleMouseOver = () => {
     setIsHovered(true);
@@ -31,20 +37,14 @@ function Grinder() {
     setIsHovered(false);
   };
 
-  const handleClick = () => {
-    const grinderAudio = new Audio('/sounds/Grinder.mp3');
-    grinderAudio.play();
-  };
-
   return (
     <g
       id="Grinder"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      onClick={handleClick}
     >
-      <path class="cls-11" style={{ display: isHovered ? 'block' : 'none' }}
-        id="coffee_grinder" d="M550.36,199.41l-2.01-9.53h23.86v-5.72h-21.85l2.84-11.84h-15.2l2.84,11.84h-21.65c-1.55,0-3.08-.34-4.47-1.01l-13.74-6.52c-.95-.45-1.96-.61-2.94-.53h-42.56l1.74-7.61c1.31-5.71-3.03-11.16-8.89-11.16s-10.2,5.45-8.89,11.16l1.74,7.61h-6.57c-1.58,0-2.86,1.28-2.86,2.86s1.28,2.86,2.86,2.86h61.49c1.55,0,3.08.34,4.47,1.01l13.74,6.52c.95.45,1.96.61,2.94.53h25.95l-2.35,9.53h-47.87v21.27h6.31l18.37,77.84h55.53l18.37-77.84h6.83v-21.27h-48.03Z" />
+      <path class="cls-11" style={{ display: isHovered || isPlaying ? 'block' : 'none' }}
+        id="grinder_hover" d="M550.36,199.41l-2.01-9.53h23.86v-5.72h-21.85l2.84-11.84h-15.2l2.84,11.84h-21.65c-1.55,0-3.08-.34-4.47-1.01l-13.74-6.52c-.95-.45-1.96-.61-2.94-.53h-42.56l1.74-7.61c1.31-5.71-3.03-11.16-8.89-11.16s-10.2,5.45-8.89,11.16l1.74,7.61h-6.57c-1.58,0-2.86,1.28-2.86,2.86s1.28,2.86,2.86,2.86h61.49c1.55,0,3.08.34,4.47,1.01l13.74,6.52c.95.45,1.96.61,2.94.53h25.95l-2.35,9.53h-47.87v21.27h6.31l18.37,77.84h55.53l18.37-77.84h6.83v-21.27h-48.03Z" />
       <polygon class="cls-5" points="591.57 220.68 573.2 298.52 517.66 298.52 499.3 220.68 591.57 220.68" />
       <polygon class="cls-10" points="543.2 189.91 548.36 189.91 550.36 199.41 540.86 199.41 543.2 189.91" />
       <path class="cls-7" d="M492.99,237.07c7.53,0,7.53,6,15.06,6s7.53-6,15.06-6,7.53,6,15.05,6,7.53-6,15.06-6,7.53,6,15.06,6,7.53-6,15.06-6,7.53,6,15.06,6" />

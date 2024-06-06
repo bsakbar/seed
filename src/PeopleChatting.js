@@ -2,9 +2,22 @@ import React, { useState, useEffect } from 'react';
 
 function PeopleChatting() {
     const [isHovered, setIsHovered] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
+    const [audio, setAudio] = useState(new Audio('/sounds/Chatter.mp3'));
 
     useEffect(() => {
-        const svgElement = document.querySelector('#people-hover');
+        const handleClick = () => {
+            if (isPlaying) {
+                audio.pause();
+                audio.currentTime = 0;
+                setIsPlaying(false);
+            } else {
+                audio.play();
+                setIsPlaying(true);
+            }
+        };
+
+        const svgElement = document.querySelector('#people_hover');
         if (svgElement) {
             svgElement.addEventListener('click', handleClick);
         }
@@ -14,7 +27,7 @@ function PeopleChatting() {
                 svgElement.removeEventListener('click', handleClick);
             }
         };
-    }, []);
+    }, [audio, isPlaying]);
 
     const handleMouseOver = () => {
         setIsHovered(true);
@@ -24,25 +37,17 @@ function PeopleChatting() {
         setIsHovered(false);
     };
 
-    const handleClick = () => {
-        const grinderAudio = new Audio('/sounds/Chatter.mp3');
-        grinderAudio.play();
-    };
-
 
     return (
         <g id="People_Chatting"
             onMouseOver={handleMouseOver}
             onMouseOut={handleMouseOut}
-            onClick={handleClick}
         >
-
-            <g id="people-hover" style={{ display: isHovered ? 'block' : 'none' }}>
+            <g id="people_hover" style={{ display: isHovered || isPlaying ? 'block' : 'none' }}>
                 <path class="cls-11" d="M755.1,262.42l4.19-.39c3.5-45.59-8.84-56.46-8.84-56.46-4.48-3.58-11.17-4.72-16.64-3.02-8.57,23.45-9.65,62.76-9.65,62.76l4.41-.41c-5.71,35.42-10.93,51.4-10.93,51.4h15.43c4.48-8.99,6.92-17.36,8.24-24.16l.48,2.65,5.57,21.51h15.8s-3.28-18.8-8.07-53.88Z" />
                 <path class="cls-11" d="M711.21,263.06c-.83-6.3-2.19-12.51-4.08-18.57-1.9-6.08-1.31-11.98-2.29-18.18-.73-4.66-2.93-9.05-6.08-12.54-2.82-3.11-6.98-6.85-11.41-5.71-2.01.52-3.85,1.56-5.41,2.92-1.41,1.23-3.44,3.18-5.48,5.76-2.71,3.43-5.43,7.97-6.75,13.42-1,4.15,2.16,8.15,6.43,8.15h2.67l-.82,11.49v40.01h1.9l2.74,17.94h7.66l.69-17.94h5.25l2.74,17.98h7.66l.69-17.98h4.65c.02-.2.04-.39.05-.59.71-8.68.32-17.54-.82-26.16Z" />
                 <path class="cls-11" d="M656.29,307.79h6.27l-8.59-46.78,7.58.99-5.9-26.86h.93c2.85,0,5.01-2.57,4.52-5.37l-1.38-7.92c-.78-4.49-4.23-8.04-8.69-8.96l-15.54-3.19-10.05,47.59,4.89.64.33,2.65h0l5.95,47.22h6.89l.71-31.29h.27l11.82,31.29ZM635.44,258.59h0,0Z" />
             </g>
-
             <path class="cls-10" d="M717.1,316.3h9.88c0,2.5-2.03,4.53-4.53,4.53h-7.66v-2.22c0-1.27,1.03-2.31,2.31-2.31Z" transform="translate(1441.78 637.12) rotate(-180)" />
             <path class="cls-10" d="M746.35,316.3h9.88c0,2.5-2.03,4.53-4.53,4.53h-7.66v-2.22c0-1.27,1.03-2.31,2.31-2.31Z" transform="translate(1500.27 637.12) rotate(-180)" />
             <path class="cls-5" d="M728.52,264.9c-5.78,36.29-10.87,51.39-10.87,51.39h15.43c4.48-8.99,6.92-17.36,8.24-24.16l.48,2.65,5.57,21.51h15.8s-3.26-18.02-8.14-53.87l-26.52,2.48Z" />

@@ -2,9 +2,22 @@ import React, { useState, useEffect } from 'react';
 
 function Beans() {
   const [isHovered, setIsHovered] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audio, setAudio] = useState(new Audio('/sounds/Pouring Coffee Beans.mp3'));
 
   useEffect(() => {
-    const svgElement = document.querySelector('#coffee_beans');
+    const handleClick = () => {
+      if (isPlaying) {
+        audio.pause();
+        audio.currentTime = 0;
+        setIsPlaying(false);
+      } else {
+        audio.play();
+        setIsPlaying(true);
+      }
+    };
+
+    const svgElement = document.querySelector('#beans_hover');
     if (svgElement) {
       svgElement.addEventListener('click', handleClick);
     }
@@ -14,7 +27,7 @@ function Beans() {
         svgElement.removeEventListener('click', handleClick);
       }
     };
-  }, []);
+  }, [audio, isPlaying]);
 
   const handleMouseOver = () => {
     setIsHovered(true);
@@ -24,18 +37,13 @@ function Beans() {
     setIsHovered(false);
   };
 
-  const handleClick = () => {
-    const grinderAudio = new Audio('/sounds/Pouring Coffee Beans.mp3');
-    grinderAudio.play();
-  };
-
   return (
 
     <g id="Beans"
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}
-      onClick={handleClick}>
-      <g id="coffee_beans" style={{ display: isHovered ? 'block' : 'none' }}>
+    >
+      <g id="beans_hover" style={{ display: isHovered || isPlaying ? 'block' : 'none' }}>
         <ellipse class="cls-11" cx="545.52" cy="122.26" rx="7.75" ry="5.45" transform="translate(157.34 524.57) rotate(-58.66)" />
         <ellipse class="cls-11" cx="571.29" cy="80.21" rx="5.45" ry="7.75" transform="translate(41.65 308.88) rotate(-31.34)" />
         <ellipse class="cls-11" cx="571.13" cy="107.31" rx="5.45" ry="7.75" />
