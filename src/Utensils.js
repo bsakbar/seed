@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+/* eslint-disable no-unused-vars */
 
+import React, { useState, useEffect } from 'react';
 
 function Utensils() {
   const [isHovered, setIsHovered] = useState(false);
