@@ -38,6 +38,7 @@ const IllustrationSvg = () => (
     <Desk />
     <Stairs />
     <Clock />
+  
   </svg>
 );
 

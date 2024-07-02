@@ -9,6 +9,7 @@ body {
   justify-content: center;
   align-items: center;
   background-color: #D3CCC6;
+  overflow: hidden;
   
 }
 
