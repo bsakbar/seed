@@ -21,7 +21,7 @@ import Clock from './Clock';
 const IllustrationSvg = () => (
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1391.54 1041.69">
     <Dots />
-    <Machine />
+    <Machine /> 
     <Clouds />
     <Grinder />
     <Beans />
