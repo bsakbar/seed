@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'; 
 import Dots from './Dots';
 import Machine from './Machine';
 import Clouds from './Clouds';
